@@ -1,0 +1,233 @@
+{
+    "File_name": "Instansi",
+    "Public_name": [
+        "Instansi",
+        "instansi"
+    ],
+    "Inisial": {
+        "table": "instansi",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "InstansiController",
+        "Model": "Instansi",
+        "Use_Model": [
+            "Instansi",
+            "User"
+        ]
+    },
+    "Data": {
+        "user_id": {
+            "name": "user_id",
+            "control_insert": "before",
+            "label": "",
+            "type": "key",
+            "relation": {
+                "table": "user",
+                "function": "users",
+                "relation_index": "users",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 2,
+            "request": false,
+            "migration": 0
+        },
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "nama_instansi": {
+            "name": "nama_instansi",
+            "label": "Nama Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "alamat": {
+            "name": "alamat",
+            "label": "Alamat",
+            "type": "string",
+            "request": true,
+            "migration": 10,
+            "validate": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "koordinat": {
+            "name": "koordinat",
+            "label": "Koordinat",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "before",
+            "model": "User",
+            "namespace": "\\App\\Models\\",
+            "foreign": "user_id",
+            "relation": "belongsTo",
+            "delete": true,
+            "file_relation": {
+                "name": "User",
+                "file": "User"
+            },
+            "data": []
+        }
+    },
+    "Query": {
+        "get": {
+            "model": "",
+            "where": "",
+            "with": [
+                "users"
+            ],
+            "result": "get",
+            "pagination": {
+                "number_show": 10
+            }
+        },
+        "getById": {
+            "model": "",
+            "where": {
+                "id": "args"
+            },
+            "with": [
+                "users"
+            ],
+            "result": "first"
+        },
+        "getByAuth": {
+            "model": "",
+            "where": {
+                "user_id": "auth_id"
+            },
+            "with": [
+                "users"
+            ],
+            "result": "first"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "InstansiController"
+        },
+        "api": {
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/id/{slug}",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByAuth": {
+                "method": "get",
+                "router": "/show",
+                "prefix": "instansi",
+                "middleware": 1,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "instansi",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

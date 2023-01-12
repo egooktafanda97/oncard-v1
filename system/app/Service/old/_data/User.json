@@ -1,0 +1,215 @@
+{
+    "File_name": "User",
+    "Public_name": [
+        "User",
+        "user"
+    ],
+    "Inisial": {
+        "table": "users",
+        "primary": "id",
+        "Protected": {
+            "hidden": [
+                "status"
+            ]
+        }
+    },
+    "Namespace": {
+        "Controller": "App\\Http\\Controllers\\api\\v1\\User",
+        "Model": "App\\Models\\User",
+        "Use_Model": [
+            "App\\Models\\Perpustakaan",
+            "App\\Models\\User"
+        ]
+    },
+    "Data": {
+        "nama": {
+            "validate": 2,
+            "value_parent": "nama",
+            "type": "paret_value",
+            "request": false,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "username": {
+            "validate": 3,
+            "validate_unique": {
+                "validate": 3,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "email": {
+            "validate": 5,
+            "validate_unique": {
+                "validate": 5,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "email"
+            }
+        },
+        "password": {
+            "validate": 4,
+            "type": "ecrypt",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": false
+                },
+                "form": "password"
+            }
+        },
+        "avatar": {
+            "validate": 1,
+            "type": "image",
+            "path": "avatar",
+            "request": true,
+            "migration": 3,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "after",
+            "model": "\\App\\Models\\User",
+            "foreign": "id",
+            "function": {
+                "model": "\\App\\Models\\Perpustakaan",
+                "relation": "hasOne",
+                "foreign": "id"
+            }
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "perpustakaan",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "perpustakaan"
+        }
+    },
+    "Router": {
+        "config": {
+            "name_space": "App\\Http\\Controllers\\api\\",
+            "contoller": "User"
+        },
+        "api": {
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "user",
+                "middleware": 0,
+                "version": "1"
+            }
+        }
+    },
+    "Url": {
+        "api": {
+            "store": "api/perpustakaan/store",
+            "update": "api/perpustakaan/update/",
+            "delete": "api/perpustakaan/delete/",
+            "show": "api/perpustakaan/",
+            "getById": "api/perpustakaan/",
+            "getByIdSource": "api/perpustakaan/source/"
+        },
+        "web": {
+            "show": "perpustakaan/",
+            "detail": "perpustakaan/detail/",
+            "input": "perpustakaan/input",
+            "update": "perpustakaan/update/",
+            "web": "site/perpustakaan/"
+        }
+    }
+}

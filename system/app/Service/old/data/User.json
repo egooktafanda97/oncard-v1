@@ -1,0 +1,296 @@
+{
+    "File_name": "User",
+    "Public_name": [
+        "User",
+        "user"
+    ],
+    "Inisial": {
+        "table": "users",
+        "primary": "id",
+        "Protected": {
+            "hidden": [
+                "status"
+            ]
+        }
+    },
+    "Namespace": {
+        "Controller": "App\\Http\\Controllers\\api\\User",
+        "Model": "App\\Models\\User",
+        "Use_Model": [
+            "App\\Models\\Perpustakaan",
+            "App\\Models\\User"
+        ]
+    },
+    "Template": {
+        "migration": [
+            {
+                "type": "unsignedBigInteger",
+                "param": "unsigned,index",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            {
+                "type": "string",
+                "size": "100"
+            },
+            {
+                "type": "string",
+                "size": "20",
+                "param": "nullable"
+            },
+            {
+                "type": "string",
+                "size": "200",
+                "param": "nullable"
+            },
+            {
+                "type": "time",
+                "param": "nullable"
+            }
+        ],
+        "view": {
+            "text": {
+                "type": "text",
+                "modeInput": "text",
+                "attr": {
+                    "required": true
+                },
+                "class": "",
+                "id": ""
+            },
+            "time": {
+                "type": "time",
+                "modeInput": "text",
+                "attr": {
+                    "required": true
+                },
+                "class": "",
+                "id": ""
+            },
+            "select_static": {
+                "type": "select",
+                "modeInput": "select",
+                "attr": {
+                    "required": true
+                },
+                "option": {
+                    "mode": "static",
+                    "value": {
+                        "-": "",
+                        "A": "A",
+                        "B": "B",
+                        "C": "C"
+                    }
+                },
+                "class": "",
+                "id": ""
+            }
+        },
+        "validation": [
+            "string|nullable",
+            "nullable|mimes:jpg,png,jpeg,ico,JPG,PNG,JPEG",
+            "required",
+            "required|unique:users",
+            "required|string|min:6",
+            "required|email|unique:users"
+        ],
+        "middleware": [
+            [
+                "api",
+                "role:admin"
+            ],
+            [
+                "api",
+                "role:role1|role2"
+            ]
+        ]
+    },
+    "Data": {
+        "nama": {
+            "validate": 2,
+            "value_parent": "nama",
+            "type": "paret_value",
+            "request": false,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "username": {
+            "validate": 3,
+            "validate_unique": {
+                "validate": 3,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "email": {
+            "validate": 5,
+            "validate_unique": {
+                "validate": 5,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "email"
+            }
+        },
+        "password": {
+            "validate": 4,
+            "type": "ecrypt",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": false
+                },
+                "form": "password"
+            }
+        },
+        "avatar": {
+            "validate": 1,
+            "type": "image",
+            "path": "avatar",
+            "request": true,
+            "migration": 3,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "after",
+            "model": "\\App\\Models\\User",
+            "foreign": "id",
+            "function": {
+                "model": "\\App\\Models\\Perpustakaan",
+                "relation": "hasOne",
+                "foreign": "id"
+            }
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "perpustakaan",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "perpustakaan"
+        }
+    },
+    "Router": {
+        "get": {
+            "method": "get",
+            "router": "/",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        },
+        "getById": {
+            "method": "get",
+            "router": "/{slug}",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        },
+        "getByIdAndSource": {
+            "method": "get",
+            "router": "/source/{slug}",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        },
+        "store": {
+            "method": "post",
+            "router": "/store",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        },
+        "update": {
+            "method": "post",
+            "router": "/update/{id}",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        },
+        "delete": {
+            "method": "delete",
+            "router": "/delete/{id}",
+            "prefix": "user",
+            "middleware": 0,
+            "controller": "this"
+        }
+    },
+    "Url": {
+        "api": {
+            "store": "api/perpustakaan/store",
+            "update": "api/perpustakaan/update/",
+            "delete": "api/perpustakaan/delete/",
+            "show": "api/perpustakaan/",
+            "getById": "api/perpustakaan/",
+            "getByIdSource": "api/perpustakaan/source/"
+        },
+        "web": {
+            "show": "perpustakaan/",
+            "detail": "perpustakaan/detail/",
+            "input": "perpustakaan/input",
+            "update": "perpustakaan/update/",
+            "web": "site/perpustakaan/"
+        }
+    }
+}

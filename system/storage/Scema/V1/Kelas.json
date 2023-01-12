@@ -1,0 +1,227 @@
+{
+    "File_name": "Kelas",
+    "Public_name": [
+        "Kelas",
+        "kelas"
+    ],
+    "Inisial": {
+        "table": "kelas",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "KelasController",
+        "Model": "Kelas",
+        "Use_Model": [
+            "Kelas"
+        ]
+    },
+    "Data": {
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "auto",
+            "request": false,
+            "migration": 1,
+            "validate": 6,
+            "config": {
+                "case": "auto_data_config",
+                "def_value": {
+                    "role_value": "kode_instansi"
+                }
+            },
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "validate": 6,
+            "request": false,
+            "migration": 0,
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            }
+        },
+        "nama_kelas": {
+            "name": "nama_kelas",
+            "label": "Nama Kelas",
+            "type": "string",
+            "request": true,
+            "migration": 2,
+            "validate": 2,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "keterangan": {
+            "name": "keterangan",
+            "label": "Keterangan",
+            "type": "string",
+            "request": true,
+            "validate": 6,
+            "migration": 10,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "instansi": {
+            "hirarky": "after",
+            "model": "Instansi",
+            "foreign": "instansi_id",
+            "relation": "belongsTo",
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        }
+    },
+    "Query": {
+        "get": {
+            "model": "",
+            "where": {
+                "kode_instansi": "kode_instansi"
+            },
+            "with": [
+                "instansi"
+            ],
+            "result": "get",
+            "pagination": {
+                "number_show": 10
+            }
+        },
+        "getById": {
+            "model": "",
+            "where": {
+                "id": "args"
+            },
+            "with": [
+                "users"
+            ],
+            "result": "first"
+        },
+        "getByAuth": {
+            "model": "",
+            "where": {
+                "user_id": "auth_id"
+            },
+            "with": [
+                "users"
+            ],
+            "result": "first"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "KelasController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "kelas",
+                "middleware": 0,
+                "controller": ""
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "kelas",
+                "middleware": 1,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

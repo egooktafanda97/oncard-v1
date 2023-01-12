@@ -1,0 +1,166 @@
+<?php
+
+namespace App\Http\Controllers\Api\Controll;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+{{ useModel }}
+use App\Helpers\Helpers;
+use Faker\Extension\Helper;
+use Validator;
+use App\Hold\FunctionController;
+
+class {{ class }}Controller extends Controller
+{
+
+    private $fild = [];
+
+    public function __construct()
+    {
+        // $this->middleware('auth:api', ['except' => ['']]);
+        $data = json_decode(file_get_contents(app_path("Crud/{{ class }}.json")), true);
+        $this->fild = $data;
+    }
+
+   public function get()
+    {
+        $init =  $this->fild;
+        $get = $init["model"]::orderBy("id", "DESC");
+        if (!empty($init['fungsi_relasi'])) {
+            $get = $get->with($init['fungsi_relasi']);
+        }
+        if (!empty($init["Query_get"]["get"])) {
+            $logic_array =  $init["Query_get"]["get"]["logic"] ?? null;
+            if (!empty($logic_array)) {
+                $where = $logic_array[0]::where($logic_array[2], auth()->user()->id)->first()->id;
+            } else {
+                $where = auth()->user()->id;
+            }
+            $get = $get->where($init["Query_get"]["get"]["key_where"], $where);
+        }
+        $get = $get->get();
+        return response()->json($get);
+    }
+
+    public function getById($id)
+    {
+        $init =  $this->fild;
+        $Query = $init["model"]::whereId($id);
+        if (!empty($init['fungsi_relasi'])) {
+            $Query = $Query->with($init['fungsi_relasi']);
+        }
+        $Query = $Query->first();
+        return response()->json($Query);
+    }
+
+    public function getByIdAndSource($id)
+    {
+        $init =  $this->fild;
+        $Query = $init["model"]::whereId($id);
+        if (!empty($init['fungsi_relasi'])) {
+            $Query = $Query->with($init['fungsi_relasi']);
+        }
+        $Query = $Query->first();
+        return response()->json([
+            "master" => $this->fild,
+            "result" => $Query
+        ]);
+    }
+
+    
+    public function store(Request $request)
+    {
+        try {
+            /**
+             * .
+             * insert data utama pada fild json dengan memanggil struktur data 
+             * dengan memanggil FunctionController terlebih dahulu
+             */
+            $insert_data_utama = FunctionController::generate_data_insert($request, $this->fild);
+            if (!empty($insert_data_utama['status']) && $insert_data_utama['status'] == true) {
+                /**
+                 * .
+                 * pengecekan jika ada relationship data
+                 */
+                if (!empty($this->fild['fild_relationShip'])) {
+                    /**
+                     * .
+                     * generator data relationship
+                     */
+                    $compileRelation = FunctionController::generate_data_relaation_insert($request, $this->fild);
+                    /**
+                     * .
+                     * cek status insert relasi 
+                     */
+                    if ($compileRelation['status'] == false) {
+                        return response()->json($compileRelation, 401);
+                    }
+                    /**
+                     * .
+                     * memasang id relasi pada data utama 
+                     * $compileRelation['status'] mengembalikan array id relasi
+                     */
+                    $insert_data_utama['data'] += $compileRelation['response'];
+                }
+                /**
+                 * .
+                 * proses insert data utama
+                 */
+                $ex = $this->fild['model']::create($insert_data_utama['data']);
+                if ($ex) {
+                    /**
+                     * .
+                     * status insert berhasil sattus 200
+                     */
+                    return response()->json([
+                        "response" => $ex,
+                        "status" => true,
+                        "msg" => "success create"
+                    ], 200);
+                } else {
+                    /**
+                     * .
+                     * status insert gagal status 401
+                     */
+                    return response()->json([
+                        "status" => false,
+                        "msg" => "something wrong!!!"
+                    ], 401);
+                }
+            } else {
+                /**
+                 * .
+                 * status insert gagal dan mengembalikan data status 400
+                 */
+                return response()->json([
+                    "status" => false,
+                    "msg" => "insert relation fail!!"
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            /**
+             * .
+             * gagal seluruh proses
+             */
+            return response()->json([
+                "response" => $th,
+                "status" => false,
+                "msg" => "something wrong!!!"
+            ], 500);
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        return FunctionController::generate_data_update($request, $this->fild, $id);
+    }
+    public function delete($id)
+    {
+        $init =  $this->fild;
+        $get = $init['model']::find($id);
+        if (!empty($init['fungsi_relasi']) && count($init['fungsi_relasi']) > 0)
+            foreach ($init['fungsi_relasi'] as  $func) {
+                $get->{$func}()->delete();
+            }
+        return $get->delete();
+    }
+}

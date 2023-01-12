@@ -1,0 +1,595 @@
+{
+    "File_name": "Guru",
+    "Public_name": [
+        "Guru",
+        "guru"
+    ],
+    "Inisial": {
+        "table": "guru",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "GuruController",
+        "Model": "Guru",
+        "Use_Model": [
+            "Guru",
+            "User"
+        ]
+    },
+    "Data": {
+        "user_id": {
+            "name": "user_id",
+            "control_insert": "before",
+            "label": "",
+            "type": "key",
+            "relation": {
+                "table": "user",
+                "function": "users",
+                "relation_index": "users",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 2,
+            "request": false,
+            "migration": 0
+        },
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "nama_lengkap": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "jenis_kelamin": {
+            "name": "jenis_kelamin",
+            "label": "Jenis Kelamin",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "tempat_lahir": {
+            "name": "tempat_lahir",
+            "label": "Tempat Lahir",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "tanggal_lahir": {
+            "name": "tanggal_lahir",
+            "label": "Tanggal Lahir",
+            "type": "date",
+            "request": true,
+            "validate": 0,
+            "migration": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "no_telepon": {
+            "name": "no_telepon",
+            "label": "No Telepon",
+            "type": "string",
+            "request": true,
+            "migration": 2,
+            "validate": 0,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "agama": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "alamat_lengkap": {
+            "name": "alamat_lengkap",
+            "label": "Alamat Lengkap",
+            "type": "string",
+            "request": true,
+            "migration": 10,
+            "validate": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "provinsi": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kabupaten": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kecamatan": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kelurahan": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "jabatan_fungsional_id": {
+            "name": "jabatan_fungsional_id",
+            "control_insert": "after",
+            "label": "Jabatan Fungsional",
+            "type": "integer",
+            "relation": {
+                "table": "jabatan_fungsional",
+                "function": "jabatan_fungsional",
+                "relation_index": "jabatan_fungsional",
+                "foreign": {
+                    "key": "id",
+                    "table": "jabatan_fungsional",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 7,
+            "request": false,
+            "migration": 8
+        },
+        "jabatan_struktural_id": {
+            "name": "jabatan_struktural_id",
+            "control_insert": "after",
+            "label": "Jabatan Struktural",
+            "type": "integer",
+            "relation": {
+                "table": "jabatan_struktural",
+                "function": "jabatan_struktural",
+                "relation_index": "jabatan_struktural",
+                "foreign": {
+                    "key": "id",
+                    "table": "jabatan_struktural",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 8,
+            "request": false,
+            "migration": 8
+        },
+        "jabatan_khusus_id": {
+            "name": "jabatan_khusus",
+            "control_insert": "after",
+            "label": "Jabatan Khusus",
+            "type": "integer",
+            "relation": {
+                "table": "jabatan_khusus",
+                "function": "jabatan_khusus",
+                "relation_index": "jabatan_khusus",
+                "foreign": {
+                    "key": "id",
+                    "table": "jabatan_khusus",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 8,
+            "request": false,
+            "migration": 8
+        },
+        "unit_konsentrasi_id": {
+            "name": "unit_konsentrasi",
+            "control_insert": "after",
+            "label": "Unit Konsentrasi",
+            "type": "integer",
+            "relation": {
+                "table": "unit_konsentrasi",
+                "function": "unit_konsentrasi",
+                "relation_index": "unit_konsentrasi",
+                "foreign": {
+                    "key": "id",
+                    "table": "unit_konsentrasi",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 8,
+            "request": false,
+            "migration": 8
+        },
+        "pns": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 6,
+            "migration": 9,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "mengajar": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 6,
+            "migration": 9,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "before",
+            "model": "User",
+            "foreign": "user_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "user_id"
+            },
+            "file_relation": {
+                "name": "User",
+                "file": "User"
+            },
+            "data": []
+        },
+        "instansi": {
+            "hirarky": "after",
+            "model": "Instansi",
+            "foreign": "instansi_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        },
+        "jabatan_fungsional": {
+            "hirarky": "after",
+            "model": "JabatanFungsional",
+            "foreign": "kelas_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "JabatanFungsional",
+                "file": "JabatanFungsional"
+            },
+            "data": []
+        },
+        "jabatan_struktural": {
+            "hirarky": "after",
+            "model": "JabatanStruktural",
+            "foreign": "jabatan_struktural_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "JabatanStruktural",
+                "file": "JabatanStruktural"
+            },
+            "data": []
+        },
+        "jabatan_khusus": {
+            "hirarky": "after",
+            "model": "JabatanKhusus",
+            "foreign": "jabatan_khusus_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "JabatanKhusus",
+                "file": "JabatanKhusus"
+            },
+            "data": []
+        },
+        "unit_konsentrasi": {
+            "hirarky": "after",
+            "model": "UnitKonsentrasi",
+            "foreign": "unit_konsentrasi_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "UnitKonsentrasi",
+                "file": "UnitKonsentrasi"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Guru",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "Guru"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "GuruController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "guru",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

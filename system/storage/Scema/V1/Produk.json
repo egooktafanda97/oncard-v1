@@ -1,0 +1,361 @@
+{
+    "File_name": "Produk",
+    "Public_name": [
+        "Produk",
+        "produk"
+    ],
+    "Inisial": {
+        "table": "produk",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "ProdukController",
+        "Contoller_name": "ProdukController",
+        "Model": "Produk",
+        "Use_Model": [
+            "Produk",
+            "User"
+        ]
+    },
+    "Data": {
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "user_id": {
+            "name": "user_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_user_auth",
+                "def_value": {
+                    "role_value": "auth_id"
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "nama": {
+            "name": "nama",
+            "label": "Nama Produk",
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "validate": 11,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "jenis": {
+            "name": "jenis",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "migration": 3,
+            "validate": 10,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kategori": {
+            "name": "kategori",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "validate": 11,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "harga": {
+            "name": "harga",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "validate": 11,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "satuan": {
+            "name": "satuan",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "validate": 11,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "deskripsi": {
+            "name": "deskripsi",
+            "label": "",
+            "type": "text",
+            "request": true,
+            "migration": 10,
+            "validate": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "gambar": {
+            "validate": 1,
+            "type": "image",
+            "path": "imags/gambar_produk",
+            "request": true,
+            "migration": 3,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "stok": {
+            "name": "stok",
+            "label": "",
+            "type": "integer",
+            "request": true,
+            "migration": 14,
+            "validate": 8,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "status": {
+            "name": "status",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "validate": 6,
+            "migration": 9,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "instansi": {
+            "hirarky": "after",
+            "model": "Instansi",
+            "foreign": "instansi_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Produk",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "Produk"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "ProdukController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "Produk",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

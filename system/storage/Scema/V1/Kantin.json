@@ -1,0 +1,295 @@
+{
+    "File_name": "Kantin",
+    "Public_name": [
+        "Kantin",
+        "kantin"
+    ],
+    "Inisial": {
+        "table": "kantin",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "KantinController",
+        "Model": "Kantin",
+        "Use_Model": [
+            "Kantin",
+            "User"
+        ]
+    },
+    "Data": {
+        "user_id": {
+            "name": "user_id",
+            "control_insert": "before",
+            "label": "",
+            "type": "key",
+            "relation": {
+                "table": "user",
+                "function": "users",
+                "relation_index": "users",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 2,
+            "request": false,
+            "migration": 0
+        },
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "nama_kantin": {
+            "name": "nama_kantin",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "pemilik_kantin": {
+            "name": "nama_kantin",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "no_telepon": {
+            "name": "no_telepon",
+            "label": "No Telepon",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 2,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "alamat_lengkap": {
+            "name": "alamat_lengkap",
+            "label": "Alamat Lengkap",
+            "type": "string",
+            "request": true,
+            "migration": 10,
+            "validate": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "keterangan": {
+            "name": "keterangan",
+            "label": "keterangan",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "before",
+            "model": "User",
+            "foreign": "user_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "user_id"
+            },
+            "file_relation": {
+                "name": "User",
+                "file": "User"
+            },
+            "data": []
+        },
+        "instansi": {
+            "hirarky": "after",
+            "model": "Instansi",
+            "foreign": "instansi_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Kantin",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "Kantin"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "KantinController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "Kantin",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

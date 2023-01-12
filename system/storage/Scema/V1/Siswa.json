@@ -1,0 +1,488 @@
+{
+    "File_name": "Siswa",
+    "Public_name": [
+        "Siswa",
+        "siswa"
+    ],
+    "Inisial": {
+        "table": "siswa",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "SiswaController",
+        "Model": "Siswa",
+        "Use_Model": [
+            "Siswa",
+            "User"
+        ]
+    },
+    "Data": {
+        "user_id": {
+            "name": "user_id",
+            "control_insert": "before",
+            "label": "",
+            "type": "key",
+            "relation": {
+                "table": "user",
+                "function": "users",
+                "relation_index": "users",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 2,
+            "request": false,
+            "migration": 0
+        },
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "orangtua_id": {
+            "name": "orangtua_id",
+            "control_insert": "after",
+            "label": "Orangtua",
+            "type": "integer",
+            "relation": {
+                "table": "orangtua",
+                "function": "orangtua",
+                "relation_index": "orangtua",
+                "foreign": {
+                    "key": "id",
+                    "table": "orangtua",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 2,
+            "request": false,
+            "migration": 7
+        },
+        "kelas_id": {
+            "name": "kelas_id",
+            "control_insert": "after",
+            "label": "Kelas",
+            "type": "integer",
+            "relation": {
+                "table": "kelas",
+                "function": "kelas",
+                "relation_index": "kelas",
+                "foreign": {
+                    "key": "id",
+                    "table": "kelas",
+                    "auto_delete_relation": false
+                }
+            },
+            "validate": 7,
+            "request": false,
+            "migration": 8
+        },
+        "nama_lengkap": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "jenis_kelamin": {
+            "name": "jenis_kelamin",
+            "label": "Jenis Kelamin",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "tempat_lahir": {
+            "name": "tempat_lahir",
+            "label": "Tempat Lahir",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "tanggal_lahir": {
+            "name": "tanggal_lahir",
+            "label": "Tanggal Lahir",
+            "type": "date",
+            "request": true,
+            "validate": 0,
+            "migration": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "agama": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "alamat_lengkap": {
+            "name": "alamat_lengkap",
+            "label": "Alamat Lengkap",
+            "type": "string",
+            "request": true,
+            "migration": 10,
+            "validate": 6,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "provinsi": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kabupaten": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kecamatan": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "kelurahan": {
+            "name": "nama_lengkap",
+            "label": "Nama Lengkap",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "status_siswa": {
+            "name": "status_siswa",
+            "label": "Status Siswa",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        }
+    },
+    "Relation": {
+        "users": {
+            "hirarky": "before",
+            "model": "User",
+            "foreign": "user_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "user_id"
+            },
+            "file_relation": {
+                "name": "User",
+                "file": "User"
+            },
+            "data": []
+        },
+        "instansi": {
+            "hirarky": "after",
+            "model": "Instansi",
+            "foreign": "instansi_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        },
+        "orangtua": {
+            "hirarky": "after",
+            "model": "Orangtua",
+            "foreign": "orangtua_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "OrangTua",
+                "file": "OrangTua"
+            },
+            "data": []
+        },
+        "kelas": {
+            "hirarky": "after",
+            "model": "Kelas",
+            "foreign": "kelas_id",
+            "function": {
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "OrangTua",
+                "file": "OrangTua"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Siswa",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "Siswa"
+        }
+    },
+    "Router": {
+        "config": {
+            "name_space": "App\\Http\\Controllers\\api\\",
+            "contoller": "SiswaController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "siswa",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

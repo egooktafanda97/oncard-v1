@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+    // use SoftDeletes;
+
+    function genFilds($data)
+    {
+        $arr = [];
+        foreach ($data['fild'] as $key => $value) {
+            array_push($arr, $key);
+        }
+        return $arr;
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        $data = json_decode(file_get_contents(app_path("Crud/{{ class }}.json")), true);
+        $this->fillable = array_merge($this->genFilds($data));
+        Model::__construct($attributes);
+        $this->table = $data['table'];
+        $this->primaryKey = $data['primary'];
+    }
+
+
+    {{ relationShip }}
+}

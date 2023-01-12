@@ -1,0 +1,173 @@
+{
+    "File_name": "Buku",
+    "Public_name": [
+        "Buku",
+        "buku"
+    ],
+    "Inisial": {
+        "table": "buku",
+        "primary": "id",
+        "Protected": {
+            "hidden": [
+                "status"
+            ]
+        }
+    },
+    "Namespace": {
+        "Controller": "App\\Http\\Controllers\\api\\v1\\BukuController",
+        "Model": "App\\Models\\Buku",
+        "Use_Model": [
+            "App\\Models\\Perpustakaan",
+            "App\\Models\\Buka",
+            "App\\Models\\User"
+        ]
+    },
+    "Data": {
+        "perpustakaan_id": {
+            "name": "perpustakaan_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "App\\Models\\Perpustakaan",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "perpustakaan",
+                "function": "perpustakaan",
+                "relation_index": "perpustakaan",
+                "foreign": {
+                    "key": "id",
+                    "table": "perpustakaan",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "judul": {
+            "name": "judul",
+            "label": "Judul",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "status": {
+            "validate": 0,
+            "type": "static",
+            "value": "active",
+            "request": false,
+            "migration": 2
+        }
+    },
+    "Relation": {
+        "perpustakaan": {
+            "hirarky": "before",
+            "model": "\\App\\Models\\Perpustakaan",
+            "foreign": "perpustakaan_id",
+            "function": {
+                "model": "\\App\\Models\\Perpustakaan",
+                "relation": "belongsTo",
+                "foreign": "perpustakaan_id"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Buku",
+            "key_where": "perpustakaan_id"
+        },
+        "getById": {
+            "role": "Buku"
+        }
+    },
+    "Router": {
+        "config": {
+            "name_space": "App\\Http\\Controllers\\api\\",
+            "contoller": "BukuController"
+        },
+        "api": {
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "buku",
+                "middleware": 0,
+                "version": "1"
+            }
+        }
+    },
+    "Url": {
+        "api": {
+            "store": "api/Buku/store",
+            "update": "api/Buku/update/",
+            "delete": "api/Buku/delete/",
+            "show": "api/Buku/",
+            "getById": "api/Buku/",
+            "getByIdSource": "api/Buku/source/"
+        },
+        "web": {
+            "show": "Buku/",
+            "detail": "Buku/detail/",
+            "input": "Buku/input",
+            "update": "Buku/update/",
+            "web": "site/Buku/"
+        }
+    }
+}

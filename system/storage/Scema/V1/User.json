@@ -1,0 +1,284 @@
+{
+    "File_name": "User",
+    "Public_name": [
+        "User",
+        "user"
+    ],
+    "Inisial": {
+        "table": "users",
+        "primary": "id",
+        "Protected": {
+            "hidden": [
+                "status",
+                "password",
+                "pin",
+                "remember_token",
+                "username"
+            ]
+        }
+    },
+    "Namespace": {
+        "Controller": "UserController",
+        "Model": "User",
+        "namespace_model": "\\App\\Models\\",
+        "Use_Model": [
+            "User"
+        ]
+    },
+    "Data": {
+        "kode_instansi": {
+            "value_parent": "kode_instansi",
+            "type": "paret_value",
+            "request": false,
+            "migration": 1,
+            "validate": 2,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "username": {
+            "validate": 3,
+            "validate_unique": {
+                "validate": 3,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            }
+        },
+        "email": {
+            "validate": 5,
+            "validate_unique": {
+                "validate": 5,
+                "index_id": "users"
+            },
+            "type": "string",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "email"
+            }
+        },
+        "pin": {
+            "name": "pin",
+            "label": "Pin",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "code_reference": {
+            "name": "pin",
+            "label": "Pin",
+            "type": "string",
+            "request": true,
+            "validate": 3,
+            "migration": 5,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "password": {
+            "validate": 4,
+            "type": "ecrypt",
+            "request": true,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": false
+                },
+                "form": "password"
+            }
+        },
+        "saldo": {
+            "name": "saldo",
+            "label": "",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 11,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "role": {
+            "name": "role",
+            "label": "Role",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "foto": {
+            "validate": 1,
+            "type": "image",
+            "path": "imags/foto",
+            "request": true,
+            "migration": 3,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "status": {
+            "validate": 0,
+            "type": "static",
+            "value": "pending",
+            "request": false,
+            "migration": 2
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "perpustakaan",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "perpustakaan"
+        }
+    },
+    "Router": {
+        "config": {
+            "contoller": "User"
+        },
+        "api": {
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "user",
+                "middleware": 0,
+                "controller": ""
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

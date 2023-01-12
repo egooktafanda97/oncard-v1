@@ -1,0 +1,7 @@
+Version 1.1
+    - Validation Fix
+    - Added Login Popup
+    - Added Price Table
+
+Version 1.0
+	Release

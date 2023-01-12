@@ -1,0 +1,341 @@
+{
+    "File_name": "Transaksi",
+    "Public_name": [
+        "Transaksi",
+        "transaksi"
+    ],
+    "Inisial": {
+        "table": "transaksi",
+        "primary": "id",
+        "Protected": {}
+    },
+    "Namespace": {
+        "Controller": "App\\Http\\Controllers\\api\\v1\\TransaksiController",
+        "Model": "App\\Models\\Transaksi",
+        "Use_Model": [
+            "App\\Models\\Transaksi",
+            "App\\Models\\User"
+        ]
+    },
+    "Data": {
+        "kode_instansi": {
+            "name": "kode_instansi",
+            "label": "Kode Instansi",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "instansi_id": {
+            "name": "instansi_id",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_model",
+                "def_value": {
+                    "model_id": "App\\Models\\Instansi",
+                    "where": "user_id",
+                    "role_value": "auth_id",
+                    "get": "first",
+                    "obj": "id"
+                }
+            },
+            "relation": {
+                "table": "instansi",
+                "function": "instansi",
+                "relation_index": "instansi",
+                "foreign": {
+                    "key": "id",
+                    "table": "instansi",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "kode_transaksi": {
+            "name": "kode_transaksi",
+            "label": "Kode Transaksi",
+            "request": false,
+            "validate": 9,
+            "migration": 5,
+            "type": "auto",
+            "config": {
+                "case": "data_random_unique"
+            },
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "user_jual": {
+            "name": "user_jual",
+            "control_insert": "after",
+            "label": "",
+            "type": "auto",
+            "config": {
+                "case": "data_by_user_auth",
+                "def_value": {
+                    "role_value": "auth_id"
+                }
+            },
+            "relation": {
+                "table": "users",
+                "function": "users",
+                "relation_index": "users",
+                "foreign": {
+                    "key": "id",
+                    "table": "users",
+                    "auto_delete_relation": true
+                }
+            },
+            "validate": 6,
+            "request": false,
+            "migration": 0
+        },
+        "user_beli": {
+            "name": "user_beli",
+            "label": "Pembeli",
+            "type": "integer",
+            "request": true,
+            "validate": 8,
+            "migration": 13,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "total": {
+            "name": "total",
+            "label": "Total",
+            "type": "string",
+            "request": true,
+            "validate": 8,
+            "migration": 1,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "waktu": {
+            "name": "waktu",
+            "label": "Jam",
+            "request": false,
+            "type": "auto",
+            "validate": 0,
+            "migration": 4,
+            "config": {
+                "case": "date_time"
+            },
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "tanggal": {
+            "name": "tanggal",
+            "label": "Jam",
+            "request": false,
+            "type": "auto",
+            "validate": 0,
+            "migration": 6,
+            "config": {
+                "case": "date"
+            },
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "time"
+            },
+            "costum": {}
+        },
+        "catatan": {
+            "name": "catatan",
+            "label": "Catatan",
+            "type": "string",
+            "request": true,
+            "validate": 0,
+            "migration": 10,
+            "view": {
+                "table": {
+                    "status": true
+                },
+                "input": {
+                    "status": true
+                },
+                "update": {
+                    "status": true
+                },
+                "form": "text"
+            },
+            "costum": {}
+        },
+        "status": {
+            "validate": 0,
+            "type": "static",
+            "value": "pending",
+            "request": false,
+            "migration": 2
+        }
+    },
+    "Relation": {
+        "instansi": {
+            "hirarky": "after",
+            "model": "\\App\\Models\\Instansi",
+            "foreign": "instansi_id",
+            "function": {
+                "model": "\\App\\Models\\Instansi",
+                "relation": "belongsTo",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Instansi",
+                "file": "Instansi"
+            },
+            "data": []
+        },
+        "siswa": {
+            "hirarky": "after",
+            "model": "\\App\\Models\\Siswa",
+            "foreign": "siswa_id",
+            "function": {
+                "model": "\\App\\Models\\Siswa",
+                "relation": "hasMany",
+                "foreign": "id"
+            },
+            "file_relation": {
+                "name": "Siswa",
+                "file": "Siswa"
+            },
+            "data": []
+        }
+    },
+    "Query_get": {
+        "get": {
+            "role": "Transaksi",
+            "key_where": "user_id"
+        },
+        "getById": {
+            "role": "Transaksi"
+        }
+    },
+    "Router": {
+        "config": {
+            "name_space": "App\\Http\\Controllers\\api\\",
+            "contoller": "TransaksiController"
+        },
+        "api": {
+            "index": {
+                "method": "get",
+                "router": "/index",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "get": {
+                "method": "get",
+                "router": "/",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getById": {
+                "method": "get",
+                "router": "/{slug}",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "getByIdAndSource": {
+                "method": "get",
+                "router": "/source/{slug}",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "store": {
+                "method": "post",
+                "router": "/store",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "update": {
+                "method": "post",
+                "router": "/update/{id}",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            },
+            "delete": {
+                "method": "delete",
+                "router": "/delete/{id}",
+                "prefix": "Transaksi",
+                "middleware": 0,
+                "version": "1"
+            }
+        }
+    },
+    "Url": {
+        "api": {},
+        "web": {}
+    }
+}

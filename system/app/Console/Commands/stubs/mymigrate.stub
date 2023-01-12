@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class {{ class }} extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public $filds = [];
+    public function __construct()
+    {
+        $this->filds = json_decode(file_get_contents(app_path("Crud/{{ class }}.json")), true);
+    }
+    public function up()
+    {
+        $table = $this->filds['table'];
+        $migrates = $this->filds['migration'];
+        Schema::create($table, function (Blueprint $table) use ($migrates) {
+            $table->bigIncrements('id');
+            foreach ($migrates as $key => $value) {
+                if (!empty($value['size'])) {
+                    $tt = $table->{$value['type']}($key, $value['size']);
+                    // [$table, $value['type']]($key, $value['size']);
+                } else {
+                    // [$table, $value['type']]($key);
+                    $tt = $table->{$value['type']}($key);
+                }
+
+                if (!empty($value['param'])) {
+                    $ex = explode(",", $value['param']);
+                    if (count($ex) > 0) {
+                        foreach ($ex as $x)
+                            $tt->{$x}();
+                    }
+                }
+
+                if (!empty($value['foreign'])) {
+                    $table->foreign($key)
+                        ->references($value['foreign']['key'])
+                        ->on($value['foreign']['table'])
+                        ->onDelete('cascade');
+                }
+            }
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        schema::dropIfExists($this->filds['table']);
+    }
+}
